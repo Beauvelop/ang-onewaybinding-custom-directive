@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body ng-controller="myCtrl">
+    <h2>Function One-Way Binding Example</h2><pre>
+<ul>
+  <li class="coraltxt">Step I. <span class="whtxt">in index.html..</span></li>
+<hr>< info-dir> < / info-dir><hr>
+<li class="coraltxt">Step II. create file</li>
+<hr><span class="whtxt">infoDir.js</span><hr>
+<li class="coraltxt">Step III. add a var on scope in mainCtrl.js</li>
+<hr>$scope.name = "Leroy MmmJenkins";<hr>
+<li class="coraltxt">Step IV. add { {  }} to be interpolated</li>
+<hr>{ { name } }  <span class="whtxt">(in infoDir.html)</span><hr>
+<h4 class="teal">Thus far...{ { name } } WILL show as "Leroy"..!
+<br>It IS on scope (in the controller)
+<br>Because NO Scope has been explicitly declared in the directive!<br>*There is no scope object in the directive!<br>
+IT WILL TAKE THE SAME SCOPE AS IT'S PARENT!</h4>
+
+<li class="coraltxt">Step V. add a scope var to the main controller<span class="whtxt">in myCtrl.js</span></li>
+<hr>   .controller("myCtrl", function($scope) {
+        $scope.name = "Leroy MmmJenkins";
+  }) <hr>
+  <li class="coraltxt">Step VI. add a scope object to this directive--and, thus, giving it itsown isolated scope<span class="whtxt">in myCtrl.js</span></li><hr>
+       templateUrl: "./infoDir.html",
+             <span class="teal">scope: {},</span>
+        }
+ <hr>
+<li class="coraltxt">Step VII. Now, you can give it itsown controller & value of a <span class="teal">'name'</span> variable!<span class="whtxt">in myCtrl.js</span></li><hr>
+      templateUrl: "./infoDir.html",
+            scope: {},
+       <span class="teal">controller: function($scope) {
+   $scope.name = 'Bill Smith';</span> // this $scope value will win over it's parent
+ }
+ <hr>
+ <li class="coraltxt">Step VIII-A. Modify the scope: {} object. --Set name: to equal '=' <span class="whtxt">in infodir.js</span></li><hr>  templateUrl: "./infoDir.html",
+   scope: {
+     <span class="teal">name: '='</span>
+   },
+   controller: function($scope) {
+     ...
+     ...<hr>
+   <li class="coraltxt">Step VIII-B. Modify the < info-dir> tag <span class="whtxt">in infodir.html</span> & add an attribute</li><hr> < info-dir <span class="teal">name="name"</span>>< / info-dir> <hr>
+<hr>
+   <h2>The model's name is <code class="teal">{{name}} </code>--This is in index.html</h2><br><br>
+
+<div class="infoDirBox">
+This:  < info-dir>< /info-dir>
+Renders : <info-dir></info-dir><hr>
+This:  < info-dir <span class="teal">name="name"</span>>< /info-dir>
+Renders:  <info-dir name="name"></info-dir>
+  <!-- <info-dir name="name"></info-dir>
+  <info-dir name="name"></info-dir> -->
+</div>
+
+
+        </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="app.js"></script>
+    <!-- <script src="mydir.js"></script> -->
+    <script src="myCtrl.js"></script>
+    <script src="infoDir.js"></script>
+
+  </pre></body>
+
+</html>

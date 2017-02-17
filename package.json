@@ -1,0 +1,11 @@
+{
+  "name": "sandbox2",
+  "version": "1.0.0",
+  "description": "using \"=\", binding the scope object to the directive's corresponding .html file & the index.html",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
